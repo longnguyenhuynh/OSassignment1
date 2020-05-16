@@ -14,7 +14,8 @@ struct procinfos {
 	struct proc_info oldest_child_proc;
 };
 
-SYSCALL_DEFINE2 (get_proc_info, pid_t, pid, struct procinfos*, info) {
+
+asmlinkage long  sys_get_proc_info (pid_t pid, struct procinfos * info) {
 	printk(KERN_INFO "Student ID: 1810700\n");
 	info->studentID = 1810700;
 	if (pid == -1) {
@@ -43,7 +44,14 @@ SYSCALL_DEFINE2 (get_proc_info, pid_t, pid, struct procinfos*, info) {
 				info->oldest_child_proc.pid = cProc->pid;
 				strcpy(info->oldest_child_proc.name, cProc->comm);
 			}	
+			return 0;
 		}
 	}
-	return 0;
+	return EINVAL;
+}
+
+
+
+SYSCALL_DEFINE2 (sys_get_proc_info, pid_t, pid, struct procinfos*, info) {
+	return sys_get_proc_info(pid, info);
 }
