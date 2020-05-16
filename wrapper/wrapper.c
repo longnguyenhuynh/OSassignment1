@@ -8,7 +8,7 @@ int main() {
 	pid_t pid = getpid();
 	printf("PID: %d\n", pid);
 	struct procinfos info;
-	if (get_proc_info(pid, &info) == 0) {
+	if (sys_get_proc_info(pid, &info) == 0) {
 		printf("studentID: %ld\n", info.studentID);
 		printf("proc.pid: %d\n", info.proc.pid);
 		printf("proc.name: %s\n", info.proc.name);

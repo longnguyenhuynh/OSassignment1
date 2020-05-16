@@ -14,5 +14,5 @@ struct procinfos {
 	struct proc_info oldest_child_proc;
 };
 
-long get_proc_info (pid_t pid, struct procinfos * info);
+long sys_get_proc_info (pid_t pid, struct procinfos * info);
 #endif // _GET_PROC_INFO_H_
